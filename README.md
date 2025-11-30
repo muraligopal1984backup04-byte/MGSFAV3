@@ -1,161 +1,286 @@
 # Sales Management System
 
-A comprehensive sales and distribution management system built with React, TypeScript, Vite, and Supabase.
+A comprehensive enterprise-grade sales and distribution management system with Business Intelligence reporting, built with React, TypeScript, Vite, and Supabase.
 
-## Features
+[![Built with React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green.svg)](https://supabase.com/)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 
-### Core Modules
+## 📋 Table of Contents
+
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Database Schema](#database-schema)
+- [Setup Guide](#setup-guide)
+- [Deployment](#deployment)
+- [Documentation](#documentation)
+
+## ✨ Features
+
+### 🎯 Core Modules
 
 #### Master Data Management
-- **Company Master** - Multi-company support with hierarchical structure
+- **Company Master** - Multi-company hierarchical structure
 - **Branch Master** - Branch-wise operations and reporting
+- **Brand Master** - Brand management and tracking
 - **Customer Master** - Complete customer database with KYC
-- **Lead Management** - Lead tracking and conversion pipeline
-- **Product Master** - Product catalog with pricing
-- **Brand Master** - Brand-wise sales tracking
+- **Product Master** - Product catalog with pricing tiers
 - **Route Master** - Route planning and optimization
-- **User Management** - Role-based access control
+- **User Management** - Role-based access control (Admin, Manager, User, Customer)
 
 #### Sales Operations
-- **Sales Orders** - Order entry with multiple line items
-- **Invoice Generation** - Automated invoicing with tax calculation
-- **Bulk Invoice Upload** - CSV-based bulk invoice processing
+- **Sales Orders** - Multi-line order entry with auto-calculations
+- **Invoice Management** - Automated invoicing with tax calculation
+- **Bulk Invoice Upload** - CSV-based bulk invoice processing with validation
 - **Order Tracking** - Real-time order status monitoring
 
 #### Collections & Payments
-- **Collection Entry** - Payment collection against orders
-- **Multi-line Collections** - Split payments across invoices
-- **Payment Reconciliation** - Automated matching with orders
+- **Collection Entry** - Payment collection against invoices
+- **Multi-line Collections** - Split payments across multiple invoices
+- **Payment Reconciliation** - Automated invoice matching
 
 #### Field Force Management
 - **Route Planning** - Route-customer mapping
 - **User Route Assignment** - Field staff to route mapping
 - **Beat Planning** - Day-wise route scheduling
-- **Location Tracking** - GPS-based field staff tracking
+- **Auto-fetch Logic** - Automatic route and staff assignment based on customer
 
-#### Reporting & Analytics
-- **Route-wise Sales Report** - Sales analysis by route
-- **Field Staff Sales Report** - Performance tracking by staff
-- **Brand-wise Sales Report** - Brand performance analysis
-- **Customer-wise Reports** - Customer purchase patterns
-- **Date Range Filtering** - Flexible reporting periods
+#### Inventory Management
+- **Daily Stock Upload** - CSV bulk upload for stock quantities
+- **Daily Stock Report** - Comprehensive stock view with filters
+- **Price Management** - Product pricing with fetch-on-demand
+- **Stock Analytics** - Last upload tracking and reporting
 
-### Technical Features
-- **Responsive Design** - Mobile-first responsive UI
+#### 📊 Business Intelligence Reports
+
+##### Sales Invoice Report
+- Complete invoice analytics with drill-down to line items
+- Filters: Branch, Customer, Date Range, Payment Status
+- Summary cards: Total Sales, Net Amount, Discounts, Tax
+- CSV Export capability
+
+##### Route-Wise Sales Report
+- Sales performance by delivery routes
+- Customer breakdown within each route
+- Metrics: Invoices, Customers, Gross/Net Sales
+- CSV Export
+
+##### Field Staff Sales Report
+- Performance tracking by field staff
+- Recent order history drill-down
+- Metrics: Orders, Invoices, Customers, Sales
+- CSV Export
+
+##### Brand-Wise Insights
+- Performance analytics by brand
+- Market share visualization with progress bars
+- Ranking system and product count
+- CSV Export
+
+##### Customer Purchase Pattern & Trends
+- Behavioral insights and purchasing trends
+- First/last purchase tracking
+- Purchase frequency analysis (orders per month)
+- Color-coded frequency indicators
+- Sort by: Total Spent, Frequency, Recent activity
+- CSV Export
+
+##### Age-Wise Outstanding Report
+- Receivables aging analysis
+- Buckets: <45, 45-60, 60-90, 90-120, >120 days
+- Branch and customer filters
+- Non-zero bucket filtering
+- CSV bulk upload and export
+
+### 🔧 Technical Features
+
+- **Responsive Design** - Mobile-first, works on all devices
 - **Real-time Updates** - Live data synchronization
-- **Secure Authentication** - Custom role-based auth system
+- **Custom Authentication** - Role-based access control
+- **Row Level Security** - Database-level security policies
 - **Data Validation** - Client and server-side validation
 - **Audit Trail** - Complete user action tracking
 - **Export Capabilities** - CSV exports for all reports
+- **Drill-Down Reports** - Interactive expandable data views
+- **Auto-calculations** - Automatic tax, discount, and total calculations
+- **Bulk Operations** - CSV upload for invoices, stock, and outstanding
 
-## Technology Stack
+## 🛠 Technology Stack
 
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Database**: Supabase (PostgreSQL)
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **State Management**: React Context API
-- **Routing**: React Router v6
+### Frontend
+- **React 18** - Modern React with hooks
+- **TypeScript 5.3** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first styling
+- **Lucide React** - Beautiful icon system
+- **React Router v6** - Client-side routing
+- **Context API** - State management
 
-## Project Structure
+### Backend
+- **Supabase** - PostgreSQL database with real-time features
+- **Row Level Security** - Database-level access control
+- **PostgreSQL** - Powerful relational database
+- **Triggers & Functions** - Automated database operations
+
+### Development Tools
+- **ESLint** - Code linting
+- **TypeScript Compiler** - Type checking
+- **PostCSS** - CSS processing
+- **Autoprefixer** - CSS vendor prefixing
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- npm 9+
+- Supabase account
+- Git
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd sales-management-system
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your Supabase credentials
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## 📁 Project Structure
 
 ```
-project/
+sales-management-system/
 ├── src/
-│   ├── components/          # React components
-│   │   ├── auth/           # Authentication components
-│   │   ├── customers/      # Customer management
-│   │   ├── leads/          # Lead management
-│   │   ├── orders/         # Sales order components
-│   │   ├── collections/    # Payment collection
-│   │   ├── invoices/       # Invoice management
-│   │   ├── routes/         # Route management
-│   │   ├── reports/        # Reporting components
-│   │   └── masters/        # Master data components
-│   ├── contexts/           # React Context providers
-│   ├── lib/               # Utilities and helpers
-│   └── App.tsx            # Main application component
+│   ├── components/
+│   │   ├── admin/              # Admin panel components
+│   │   ├── auth/               # Authentication
+│   │   ├── collections/        # Payment collections
+│   │   ├── crm/               # Customer management
+│   │   ├── inventory/         # Stock management
+│   │   │   ├── DailyStockUpload.tsx
+│   │   │   └── DailyStockReport.tsx
+│   │   ├── invoices/          # Invoice management
+│   │   ├── orders/            # Sales orders
+│   │   ├── products/          # Product catalog
+│   │   ├── reports/           # BI Reports
+│   │   │   ├── SalesInvoiceReport.tsx
+│   │   │   ├── RouteWiseSales.tsx
+│   │   │   ├── FieldStaffSales.tsx
+│   │   │   ├── BrandWiseInsights.tsx
+│   │   │   ├── CustomerPurchasePattern.tsx
+│   │   │   └── AgeWiseOutstanding.tsx
+│   │   ├── routes/            # Route management
+│   │   └── shared/            # Shared components
+│   ├── contexts/
+│   │   └── AuthContext.tsx    # Authentication context
+│   ├── lib/
+│   │   └── supabase.ts        # Supabase client
+│   ├── App.tsx                # Main app component
+│   ├── main.tsx              # Entry point
+│   └── index.css             # Global styles
 ├── supabase/
-│   └── migrations/        # Database migrations
-├── .env                   # Environment variables
-└── package.json          # Dependencies
-
+│   └── migrations/           # Database migrations
+│       ├── 20251126105230_fix_security_issues_indexes_and_rls.sql
+│       ├── 20251126105553_enable_rls_for_company_branch_with_service_role.sql
+│       └── 20251129142348_add_bulk_upload_tracking_and_product_fields.sql
+├── public/                   # Static assets
+├── .env                     # Environment variables (git-ignored)
+├── .env.example            # Environment template
+├── package.json            # Dependencies
+├── tsconfig.json          # TypeScript config
+├── vite.config.ts        # Vite configuration
+├── tailwind.config.js    # Tailwind CSS config
+├── SETUP_GUIDE.md       # Detailed setup instructions
+├── DEPLOYMENT.md        # Deployment guide
+└── DATABASE_SCHEMA.md   # Complete schema documentation
 ```
 
-## Database Schema
+## 🗄️ Database Schema
 
-### Master Tables
+### Master Tables (12)
 - `company_master_tbl` - Company information
 - `branch_master_tbl` - Branch details
-- `customer_master_tbl` - Customer database
-- `lead_master_tbl` - Lead information
-- `product_master_tbl` - Product catalog
 - `brand_master_tbl` - Brand data
+- `customer_master_tbl` - Customer database
+- `product_master_tbl` - Product catalog
 - `route_master_tbl` - Route definitions
 - `user_master_tbl` - User accounts
+- `customer_address_tbl` - Customer addresses
+- `product_price_tbl` - Product pricing
+- `customer_media_tbl` - Customer documents
+- `lead_master_tbl` - Lead information
+- `lead_address_tbl` - Lead addresses
 
-### Transaction Tables
+### Transaction Tables (8)
 - `sale_order_header_tbl` - Order headers
 - `sale_order_detail_tbl` - Order line items
-- `sales_inv_hdr_tbl` - Invoice headers
-- `sales_inv_dtl_tbl` - Invoice line items
+- `invoice_header_tbl` - Invoice headers
+- `invoice_detail_tbl` - Invoice line items
 - `collection_detail_tbl` - Payment collections
 - `collection_detail_line_tbl` - Collection line items
+- `daily_stock_tbl` - Daily stock records
+- `age_wise_outstanding_tbl` - Outstanding receivables
 
-### Mapping Tables
+### Mapping Tables (3)
 - `route_customer_mapping_tbl` - Route-customer assignments
 - `user_route_mapping_tbl` - User-route assignments
 - `customer_user_assignments_tbl` - Customer-user assignments
 
-### Supporting Tables
-- `customer_address_tbl` - Customer addresses
-- `customer_media_tbl` - Customer documents/photos
-- `lead_address_tbl` - Lead addresses
-- `product_price_tbl` - Product pricing
+### Tracking Tables (2)
 - `user_location_tbl` - GPS tracking data
+- `bulk_upload_tracking_tbl` - Bulk upload history
 
-## Setup Instructions
+**Total Tables: 25**
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-- Supabase account
+See [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md) for complete schema documentation.
 
-### Installation
+## 📖 Setup Guide
 
-1. Clone the repository
-```bash
-git clone <repository-url>
-cd project
-```
+For detailed setup instructions including database setup, migration execution, and troubleshooting, see [SETUP_GUIDE.md](SETUP_GUIDE.md).
 
-2. Install dependencies
-```bash
-npm install
-```
+### Quick Environment Setup
 
-3. Configure environment variables
-Create a `.env` file with:
-```
-VITE_SUPABASE_URL=your_supabase_url
+Create a `.env` file in the root directory:
+
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-4. Run database migrations
-All migrations are in `supabase/migrations/` and are automatically applied to your Supabase project.
+Get these values from your Supabase project dashboard at: Settings > API
 
-5. Start development server
-```bash
-npm run dev
-```
+## 🚢 Deployment
 
-6. Build for production
-```bash
-npm run build
-```
+See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment instructions including:
+- Vercel deployment
+- Netlify deployment
+- Production build optimization
+- Environment variable configuration
+- Database migration in production
 
-## Key Features Explained
+## 📚 Documentation
+
+- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Complete setup instructions
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment guide
+- [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md) - Database documentation
+- [ARCHITECTURE.md](ARCHITECTURE.md) - System architecture
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+
+## 🔑 Key Features Explained
 
 ### Auto-fetch Route and Field Staff
 When selecting a customer in orders or collections:
@@ -164,55 +289,26 @@ When selecting a customer in orders or collections:
 3. Route and Field Staff dropdowns are auto-populated
 4. Users can override if needed
 
-### Bulk Invoice Upload
-1. Prepare CSV with columns: invoice_no, invoice_date, order_no, customer_code, product_code, quantity, unit_price, discount_percentage, tax_percentage
-2. Upload via Invoice Management screen
-3. System validates all data and creates invoices with line items
-4. Auto-fetches route and field staff from customer mappings
+### Bulk Upload Operations
+- **Invoices**: Upload multiple invoices with line items via CSV
+- **Daily Stock**: Bulk upload stock quantities by branch/product
+- **Age-Wise Outstanding**: Import receivables aging data
+- All uploads include validation and error reporting
 
-### Row Level Security
-- All tables have RLS enabled
-- Custom authentication system (not Supabase Auth)
-- Application-level access control via role checks
-- Permissive policies for compatibility
+### Security Architecture
+- **Custom Authentication**: Email/password with Supabase backend
+- **Row Level Security**: Enabled on all tables
+- **Role-Based Access**: Admin, Manager, User, Customer roles
+- **Audit Trails**: Created/updated by tracking on all records
+- **Secure Functions**: Search path protection on all triggers
 
-### Reporting System
-- Date range selection for all reports
-- Export to CSV functionality
-- Filters by route, staff, branch, brand
-- Real-time data updates
+### Performance Optimizations
+- **Comprehensive Indexing**: All FKs and frequently queried columns
+- **Efficient Queries**: Using `maybeSingle()` for zero-or-one results
+- **Optimized Joins**: Proper index coverage on all join columns
+- **React Optimization**: Context memoization and minimal re-renders
 
-## Security
-
-- **Row Level Security (RLS)**: Enabled on all tables
-- **Role-Based Access**: Admin, Manager, User roles
-- **Audit Trails**: All create/update operations tracked
-- **Foreign Key Indexes**: All FK columns indexed for performance
-- **Secure Functions**: Search path protection on triggers
-
-## Performance Optimizations
-
-- **Comprehensive Indexing**: All foreign keys and frequently queried columns indexed
-- **Optimized Queries**: Using `maybeSingle()` for zero-or-one results
-- **Efficient Joins**: Proper index coverage on all join columns
-- **Minimal Re-renders**: React Context optimization
-
-## Database Migrations
-
-Migrations follow a strict format:
-- Detailed markdown summary at top
-- IF EXISTS/IF NOT EXISTS for idempotency
-- RLS enabled on all new tables
-- Restrictive RLS policies by default
-- Comprehensive indexes
-
-Key migrations:
-- `20251125020348` - Customer user assignments
-- `20251125032158` - Beat plan infrastructure
-- `20251126105230` - Security fixes and indexes
-- `20251126105553` - RLS for company/branch tables
-
-## Access Control
+## 🔐 Access Control
 
 ### Admin Role
 - Full system access
@@ -222,28 +318,50 @@ Key migrations:
 
 ### Manager Role
 - Branch-level operations
-- Customer and lead management
-- Sales order processing
-- Collection entry
-- Reporting access
+- Customer and product management
+- Sales order and invoice processing
+- Collection entry and reporting
 
-### User Role
+### User Role (Field Staff)
 - Limited data entry
-- View own records
-- Basic reporting
+- View assigned customers
+- Basic reporting access
 
-## Contributing
+### Customer Role
+- View own orders and invoices
+- View assigned routes
+- Limited reporting access
 
-1. Create feature branch
+## 🤝 Contributing
+
+1. Create a feature branch from `main`
 2. Make changes with proper testing
 3. Ensure migrations are idempotent
 4. Update documentation
-5. Submit pull request
+5. Submit a pull request
 
-## Support
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
-For issues or questions, please create an issue in the repository.
-
-## License
+## 📄 License
 
 Proprietary - All rights reserved
+
+## 🆘 Support
+
+For issues or questions:
+- Create an issue in the repository
+- Check existing documentation
+- Review migration files for schema questions
+
+## 🎯 Roadmap
+
+- [ ] Mobile app for field staff
+- [ ] Real-time notifications
+- [ ] Advanced analytics dashboards
+- [ ] WhatsApp integration
+- [ ] Email automation
+- [ ] Advanced inventory forecasting
+
+---
+
+**Built with ❤️ using React, TypeScript, and Supabase**
